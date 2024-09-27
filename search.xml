@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>群晖开启Docker(ContainerManager)远程访问</title>
+      <link href="/2024/09/27/%E7%BE%A4%E6%99%96%E5%BC%80%E5%90%AFDocker(ContainerManager)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/"/>
+      <url>/2024/09/27/%E7%BE%A4%E6%99%96%E5%BC%80%E5%90%AFDocker(ContainerManager)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</url>
+      
+        <content type="html"><![CDATA[<p>群晖DSM之前的版本里叫Docker，新版叫ContainerManager，安装的路径相应地也变了。</p><p>想要开启Docker的远程访问，也就是能在其它机器上执行这台机器上的Docker的各种命令，需要改下配置文件，文件位置 <code>/var/packages/ContainerManager/etc/dockerd.json</code>，可以SSH进DSM进行编辑。</p><p>添加一个属性：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;hosts&quot;</span>: [<span class="string">&quot;unix:///var/run/docker.sock&quot;</span>, <span class="string">&quot;tcp://0.0.0.0:2375&quot;</span>],</span><br></pre></td></tr></table></figure><p>保存后需要重启ContainerManager，在套件中心找到ContainerManager，先停用再打开就行了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 群晖 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>title基于openwrt上的openvpn</title>
+      <link href="/2024/08/11/%E5%9F%BA%E4%BA%8Eopenwrt%E4%B8%8A%E7%9A%84openvpn/"/>
+      <url>/2024/08/11/%E5%9F%BA%E4%BA%8Eopenwrt%E4%B8%8A%E7%9A%84openvpn/</url>
+      
+        <content type="html"><![CDATA[<h2 id="下载软件包"><a href="#下载软件包" class="headerlink" title="下载软件包"></a>下载软件包</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">luci-app-openvpn</span><br><span class="line">luci-app-openvpn-server</span><br><span class="line">luci-i18n-openvpn-server-zh-cn</span><br><span class="line">openvpn-openssl</span><br></pre></td></tr></table></figure><h2 id="设置openvpn"><a href="#设置openvpn" class="headerlink" title="设置openvpn"></a>设置openvpn</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 170414_325dc7bf39e9181fa3d8a41d045ae8be.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 170414_325dc7bf39e9181fa3d8a41d045ae8be.png"></p><h2 id="防火墙-自定义规则"><a href="#防火墙-自定义规则" class="headerlink" title="防火墙 - 自定义规则"></a>防火墙 - 自定义规则</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># openvpn实现访问内网设备</span><br><span class="line">iptables -t nat -A POSTROUTING -o br-lan -j MASQUERADE</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> openvpn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>openwrt组播转单播，看IPTV</title>
+      <link href="/2024/08/11/openwrt%E7%BB%84%E6%92%AD%E8%BD%AC%E5%8D%95%E6%92%AD%EF%BC%8C%E7%9C%8BIPTV/"/>
+      <url>/2024/08/11/openwrt%E7%BB%84%E6%92%AD%E8%BD%AC%E5%8D%95%E6%92%AD%EF%BC%8C%E7%9C%8BIPTV/</url>
+      
+        <content type="html"><![CDATA[<h2 id="lan口设置"><a href="#lan口设置" class="headerlink" title="lan口设置"></a>lan口设置</h2><h3 id="添加网关跃点"><a href="#添加网关跃点" class="headerlink" title="添加网关跃点"></a>添加网关跃点</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120203_ee7a8e5bf2f3a555df5e5cfbf8d55c73.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120203_ee7a8e5bf2f3a555df5e5cfbf8d55c73.png"></p><h2 id="wan口设置"><a href="#wan口设置" class="headerlink" title="wan口设置"></a>wan口设置</h2><h3 id="设置DHCP客户端"><a href="#设置DHCP客户端" class="headerlink" title="设置DHCP客户端"></a>设置DHCP客户端</h3><p>高级设置如图</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120445_553f86ae003423d7d2067cc27c574107.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120445_553f86ae003423d7d2067cc27c574107.png"></p><p>物理设置——打开桥接接口——开启 IGMP snooping——保存</p><h2 id="ping-一下光猫的IPTV的地址，和公网的地址，都要通"><a href="#ping-一下光猫的IPTV的地址，和公网的地址，都要通" class="headerlink" title="ping 一下光猫的IPTV的地址，和公网的地址，都要通"></a>ping 一下光猫的IPTV的地址，和公网的地址，都要通</h2><h2 id="udpxy"><a href="#udpxy" class="headerlink" title="udpxy"></a>udpxy</h2><h3 id="下载udpxy"><a href="#下载udpxy" class="headerlink" title="下载udpxy"></a>下载udpxy</h3><h3 id="设置接口，名称要对应"><a href="#设置接口，名称要对应" class="headerlink" title="设置接口，名称要对应"></a>设置接口，名称要对应</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120934_ad8587d04cffdd2143f689c12b23c459.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 120934_ad8587d04cffdd2143f689c12b23c459.png"><br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 121016_6b6b7431a96b54ba5b2d59e3619ad255.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 121016_6b6b7431a96b54ba5b2d59e3619ad255.png"></p><h3 id="打开http-openwrt-4022-status"><a href="#打开http-openwrt-4022-status" class="headerlink" title="打开http://openwrt:4022/status"></a>打开<a href="http://openwrt:4022/status">http://openwrt:4022/status</a></h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 121353_a79ad6b3b50f6c3cc75e80c9f2673e6c.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 121353_a79ad6b3b50f6c3cc75e80c9f2673e6c.png"></p><p>出现这个就成了</p><h2 id="防火墙设置"><a href="#防火墙设置" class="headerlink" title="防火墙设置"></a>防火墙设置</h2><p>接受IPTV口的入站数据</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 140553_fc07c9e6dd99131a4fa3e6f488e4dfca.png" alt="https://github.moeyy.xyz/https://github.com/kakakadong/img/raw/master/Qexo/24/8/屏幕截图 2024-08-11 140553_fc07c9e6dd99131a4fa3e6f488e4dfca.png"></p><h2 id="GitHub上找对应运营商的地址"><a href="#GitHub上找对应运营商的地址" class="headerlink" title="GitHub上找对应运营商的地址"></a>GitHub上找对应运营商的地址</h2><p>例如：<a href="http://openwrt:4021/rtp/239.3.1.129:8008">http://openwrt:4021/rtp/239.3.1.129:8008</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> openwrt </tag>
+            
+            <tag> IPTV </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo添加页面及文章教程</title>
+      <link href="/2024/07/28/Hexo%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E7%AB%A0%E6%95%99%E7%A8%8B/"/>
+      <url>/2024/07/28/Hexo%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E7%AB%A0%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>Front-matter 是 markdown 文件最上方以 —- 分隔的区域，用于指定个别档案的变数。</p><ul><li>Page Front-matter 用于页面配置</li><li>Post Front-matter 用于文章页配置</li></ul><div class="note info simple"><p>info 如果标注可选的参数，可根据自己需要添加，不用全部都写在 markdown 里</p></div><h3 id="Page-Front-matter"><a href="#Page-Front-matter" class="headerlink" title="Page Front-matter"></a>Page Front-matter</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:</span><br><span class="line">date:</span><br><span class="line">updated:</span><br><span class="line">type:</span><br><span class="line">comments:</span><br><span class="line">description:</span><br><span class="line">keywords:</span><br><span class="line">top<span class="emphasis">_img:</span></span><br><span class="line"><span class="emphasis">mathjax:</span></span><br><span class="line"><span class="emphasis">katex:</span></span><br><span class="line"><span class="emphasis">aside:</span></span><br><span class="line"><span class="emphasis">aplayer:</span></span><br><span class="line"><span class="emphasis">highlight_</span>shrink:</span><br><span class="line"><span class="section">random:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure><div class="table-container"><table><thead><tr><th>写法</th><th>解释</th></tr></thead><tbody><tr><td>title</td><td>【必需】页面标题</td></tr><tr><td>date</td><td>【必需】页面创建日期</td></tr><tr><td>type</td><td>【必需】标签、分类和友情链接三个页面需要配置</td></tr><tr><td>updated</td><td>【可选】页面更新日期</td></tr><tr><td>description</td><td>【可选】页面描述</td></tr><tr><td>keywords</td><td>【可选】页面关键字</td></tr><tr><td>comments</td><td>【可选】显示页面评论模块 (默认 true)</td></tr><tr><td>top_img</td><td>【可选】页面顶部图片</td></tr><tr><td>mathjax</td><td>【可选】显示mathjax (当设置mathjax的per_page: false时，才需要配置，默认 false)</td></tr><tr><td>katex</td><td>【可选】显示katex (当设置katex的per_page: false时，才需要配置，默认 false)</td></tr><tr><td>aside</td><td>【可选】显示侧边栏 (默认 true)</td></tr><tr><td>aplayer</td><td>【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置</td></tr><tr><td>highlight_shrink</td><td>【可选】配置代码框是否展开 (true/false) (默认为设置中highlight_shrink的配置)</td></tr><tr><td>random</td><td>【可选】配置友情链接是否随机排序（默认为 false)</td></tr></tbody></table></div><h3 id="Post-Front-matter"><a href="#Post-Front-matter" class="headerlink" title="Post Front-matter"></a>Post Front-matter</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:</span><br><span class="line">date:</span><br><span class="line">updated:</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">keywords:</span><br><span class="line">description:</span><br><span class="line">top_img:</span><br><span class="line">comments:</span><br><span class="line">cover:</span><br><span class="line">toc:</span><br><span class="line">toc_number:</span><br><span class="line">toc_style_simple:</span><br><span class="line">copyright:</span><br><span class="line">copyright_author:</span><br><span class="line">copyright_author_href:</span><br><span class="line">copyright_url:</span><br><span class="line">copyright_info:</span><br><span class="line">mathjax:</span><br><span class="line">katex:</span><br><span class="line">aplayer:</span><br><span class="line">highlight_shrink:</span><br><span class="line">aside:</span><br><span class="line">abcjs:</span><br><span class="line">---</span><br></pre></td></tr></table></figure><div class="table-container"><table><thead><tr><th>写法</th><th>解释</th></tr></thead><tbody><tr><td>title</td><td>【必需】文章标题</td></tr><tr><td>date</td><td>【必需】文章创建日期</td></tr><tr><td>updated</td><td>【可选】文章更新日期</td></tr><tr><td>tags</td><td>【可选】文章标签</td></tr><tr><td>categories</td><td>【可选】文章分类</td></tr><tr><td>keywords</td><td>【可选】文章关键字</td></tr><tr><td>description</td><td>【可选】文章描述</td></tr><tr><td>top_img</td><td>【可选】文章顶部图片</td></tr><tr><td>cover</td><td>【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false/图片地址/留空)</td></tr><tr><td>comments</td><td>【可选】显示文章评论模块(默认 true)</td></tr><tr><td>toc</td><td>【可选】显示文章TOC(默认为设置中toc的enable配置)</td></tr><tr><td>toc_number</td><td>【可选】显示toc_number(默认为设置中toc的number配置)</td></tr><tr><td>toc_style_simple</td><td>【可选】显示 toc 简洁模式</td></tr><tr><td>copyright</td><td>【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)</td></tr><tr><td>copyright_author</td><td>【可选】文章版权模块的文章作者</td></tr><tr><td>copyright_author_href</td><td>【可选】文章版权模块的文章作者链接</td></tr><tr><td>copyright_url</td><td>【可选】文章版权模块的文章连结链接</td></tr><tr><td>copyright_info</td><td>【可选】文章版权模块的版权声明文字</td></tr><tr><td>mathjax</td><td>【可选】显示mathjax(当设置 mathjax 的 per_page: false 时，才需要配置，默认 false )</td></tr><tr><td>katex</td><td>【可选】显示 katex (当设置 katex 的 per_page: false 时，才需要配置，默认 false )</td></tr><tr><td>aplayer</td><td>【可选】在需要的页面加载 aplayer 的 js 和 css,请参考文章下面的音乐 配置</td></tr><tr><td>highlight_shrink</td><td>【可选】配置代码框是否展开(true/false)(默认为设置中 highlight_shrink 的配置)</td></tr><tr><td>aside</td><td>【可选】显示侧边栏 (默认 true)</td></tr><tr><td>abcjs</td><td>【可选】加载 abcjs (当设置 abcjs 的 per_page: false 时，才需要配置，默认 false )</td></tr></tbody></table></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
